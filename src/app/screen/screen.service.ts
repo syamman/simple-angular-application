@@ -4,10 +4,9 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ScreenService {
-
   constructor(private http: HttpClient) {}
 
   handleError(error: HttpErrorResponse) {
@@ -22,14 +21,20 @@ export class ScreenService {
   }
 
   getPosts(): Observable<any> {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts').pipe(retry(3), catchError(this.handleError));
+    return this.http
+      .get('https://jsonplaceholder.typicode.com/posts')
+      .pipe(retry(3), catchError(this.handleError));
   }
 
   getPostById(id): Observable<any> {
-    return this.http.get(`https://jsonplaceholder.typicode.com/posts/${id}`).pipe(retry(3), catchError(this.handleError));
+    return this.http
+      .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+      .pipe(retry(3), catchError(this.handleError));
   }
 
   getPostCommentsById(id): Observable<any> {
-    return this.http.get(`https://jsonplaceholder.typicode.com/comments?postId=${id}`).pipe(retry(3), catchError(this.handleError));
+    return this.http
+      .get(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
+      .pipe(retry(3), catchError(this.handleError));
   }
 }

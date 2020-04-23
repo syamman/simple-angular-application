@@ -1,27 +1,30 @@
 <div class="" *ngIf="card_type.multiple">
-    <div class="card mb-4" *ngFor="let post of post_content; let i = index" [attr.data-index]="i">
-        <div *ngIf="!loading" class="card-header">{{post.title}}
-        </div>
-        <div class="card-body">
-            <div *ngIf="loading" class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-            <p *ngIf="!loading">{{post.body}}</p>
-            <a [routerLink]="['/', post.id]" *ngIf="!loading">Details</a>
-        </div>
+  <div
+    class="card mb-4"
+    *ngFor="let post of post_content; let i = index"
+    [attr.data-index]="i"
+  >
+    <div *ngIf="!loading" class="card-header">{{ post.title }}</div>
+    <div class="card-body">
+      <div *ngIf="loading" class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <p *ngIf="!loading">{{ post.body }}</p>
+      <a [routerLink]="['/', post.id]" *ngIf="!loading">Details</a>
     </div>
+  </div>
 </div>
 
 <div class="" *ngIf="card_type.single">
-    <div class="card">
-        <div class="card-header" *ngIf="!loading">
-            {{post.title}}
-        </div>
-        <div class="card-body">
-            <div *ngIf="loading" class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-            <p *ngIf="!loading">{{post.body}}</p> 
-        </div>
+  <div class="card">
+    <div class="card-header" *ngIf="!loading">
+      {{ post.title }}
     </div>
+    <div class="card-body">
+      <div *ngIf="loading" class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <p *ngIf="!loading">{{ post.body }}</p>
+    </div>
+  </div>
 </div>

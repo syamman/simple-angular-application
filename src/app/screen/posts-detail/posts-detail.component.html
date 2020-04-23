@@ -1,32 +1,42 @@
 <section class="mt-5">
-    <div class="container">
-
-        <div class="row mb-4">
-            <div class="col-12">
-                <a [routerLink]="['/']" *ngIf="!loading">Back</a>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-12">
-                <app-posts-card [loading]="loading" [post_content]="posts" [card_type]="card_type" [post]="post">
-                </app-posts-card>
-            </div>
-        </div>
-
-        <div class="comments row">
-            <div class="col-12">
-                <h2 class="text-center">Comment</h2>
-                <div *ngIf="loading_2" class="spinner-border text-primary" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-                <ul *ngIf="!loading_2">
-                    <li *ngFor="let comment of comments">
-                        <p><b>Name:</b> {{ comment.name }} <br>
-                            <b>Email:</b> {{comment.email}} <br>
-                            <b>Body:</b> {{comment.body}}</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-12">
+        <a [routerLink]="['/']" *ngIf="!loading">Back</a>
+      </div>
     </div>
+    <div class="row mb-4">
+      <div class="col-12">
+        <app-posts-card
+          [loading]="loading"
+          [post_content]="posts"
+          [card_type]="card_type"
+          [post]="post"
+        >
+        </app-posts-card>
+      </div>
+    </div>
+
+    <div class="comments row">
+      <div class="col-12">
+        <h2 class="text-center">Comment</h2>
+        <div
+          *ngIf="loading_2"
+          class="spinner-border text-primary"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
+        <ul *ngIf="!loading_2">
+          <li *ngFor="let comment of comments">
+            <p>
+              <b>Name:</b> {{ comment.name }} <br />
+              <b>Email:</b> {{ comment.email }} <br />
+              <b>Body:</b> {{ comment.body }}
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>

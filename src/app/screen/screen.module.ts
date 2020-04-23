@@ -5,16 +5,8 @@ import { CommonModule } from '@angular/common';
 import { PublicComponentModule } from '../public-component/public-component.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ScreenRoutingModule,
-    PublicComponentModule
-  ],
-  declarations: [
-    ...routedComponents,
-  ],
-  providers: [
-    ScreenService
-  ]
+  imports: [CommonModule, ScreenRoutingModule, PublicComponentModule],
+  declarations: [...routedComponents],
+  providers: [ScreenService],
 })
-export class ScreenModule { }
+export class ScreenModule {}

@@ -7,10 +7,9 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-posts-detail',
   templateUrl: './posts-detail.component.html',
-  styleUrls: ['./posts-detail.component.scss']
+  styleUrls: ['./posts-detail.component.scss'],
 })
 export class PostsDetailComponent implements OnInit, OnDestroy {
-
   posts: any = [];
   card_type = { single: true, multiple: false };
   post: any = '';
@@ -21,19 +20,26 @@ export class PostsDetailComponent implements OnInit, OnDestroy {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private route: ActivatedRoute, private screenService: ScreenService) {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private screenService: ScreenService,
+  ) {}
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.params.id);
-    this.screenService.getPostById(this.route.snapshot.params.id).pipe(takeUntil(this.destroy$)).subscribe(x => {
-      this.post = x;
-      this.isFetchLoading(1);
-    });
-    this.screenService.getPostCommentsById(this.route.snapshot.params.id).pipe(takeUntil(this.destroy$)).subscribe(x => {
-      this.comments = x;
-      this.isFetchLoading(2);
-    });
+    this.screenService
+      .getPostById(this.route.snapshot.params.id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((x) => {
+        this.post = x;
+        this.isFetchLoading(1);
+      });
+    this.screenService
+      .getPostCommentsById(this.route.snapshot.params.id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((x) => {
+        this.comments = x;
+        this.isFetchLoading(2);
+      });
   }
 
   ngOnDestroy() {
@@ -42,8 +48,8 @@ export class PostsDetailComponent implements OnInit, OnDestroy {
   }
 
   isFetchLoading(event) {
-    event === 1 ? setTimeout(() => this.loading = false, 1500) :
-      setTimeout(() => this.loading_2 = false, 1500);
+    event === 1
+      ? setTimeout(() => (this.loading = false), 1500)
+      : setTimeout(() => (this.loading_2 = false), 1500);
   }
-
 }

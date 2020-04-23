@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScreenService } from '../screen.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -6,10 +6,9 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.scss']
+  styleUrls: ['./landing-page.component.scss'],
 })
-export class LandingPageComponent implements OnInit {
-
+export class LandingPageComponent implements OnInit, OnDestroy {
   posts: any = [];
   card_type = { single: false, multiple: true };
   post = {};
@@ -17,13 +16,16 @@ export class LandingPageComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private screenService: ScreenService) { }
+  constructor(private screenService: ScreenService) {}
 
   ngOnInit(): void {
-    this.screenService.getPosts().pipe(takeUntil(this.destroy$)).subscribe(x => {
-      this.posts = x;
-      this.isFetchLoading();
-    });
+    this.screenService
+      .getPosts()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((x) => {
+        this.posts = x;
+        this.isFetchLoading();
+      });
   }
 
   ngOnDestroy() {
@@ -32,6 +34,6 @@ export class LandingPageComponent implements OnInit {
   }
 
   isFetchLoading() {
-    setTimeout(() => this.loading = false, 500);
+    setTimeout(() => (this.loading = false), 500);
   }
 }

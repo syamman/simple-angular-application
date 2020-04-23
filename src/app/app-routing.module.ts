@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./screen/screen.module')
-      .then(m => m.ScreenModule),
+    loadChildren: () =>
+      import('./screen/screen.module').then((m) => m.ScreenModule),
   },
   { path: '', redirectTo: '/posts', pathMatch: 'full' },
   { path: '**', redirectTo: 'screen' },
@@ -14,6 +13,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
